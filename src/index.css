@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.chat-icon {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  cursor: pointer;
+}
