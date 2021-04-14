@@ -18,3 +18,9 @@ code {
   bottom: 20px;
   cursor: pointer;
 }
+.chat-icon-window {
+  position: fixed;
+  right: 30px;
+  bottom: 150px;
+  visibility: hidden;
+}

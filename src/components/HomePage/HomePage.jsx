@@ -1,5 +1,6 @@
 import React from "react"
 import MainChatIcon from "../Chat/MainChatIcon"
+import ChatIconWindow from "../Chat/ChatIconWindow"
 
 export default class HomePage extends React.Component {
     constructor(props) {
@@ -20,6 +21,9 @@ export default class HomePage extends React.Component {
                 MORE GRAPHS HERE
                 <div className="chat-icon">
                     <MainChatIcon />
+                </div>
+                <div className="chat-icon-window">
+                    <ChatIconWindow />
                 </div>
             </div>
         )
