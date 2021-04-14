@@ -28,7 +28,9 @@ export default class MainChatIcon extends React.Component {
 
     render() {
         return (
-            <img alt="Chat Bot Icon" onClick={this.onChatIconClicked.bind(this)} src={process.env.PUBLIC_URL + '/chatbot_icon.jpg'} width="100px" height="100px"/>
+            <div className="chat-icon">
+                <img alt="Chat Bot Icon" onClick={this.onChatIconClicked.bind(this)} src={process.env.PUBLIC_URL + '/chatbot_icon.jpg'} width="100px" height="100px"/>
+            </div>
         )
     }
 }

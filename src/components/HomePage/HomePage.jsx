@@ -19,12 +19,8 @@ export default class HomePage extends React.Component {
         return (
             <div className="col-md-12">
                 MORE GRAPHS HERE
-                <div className="chat-icon">
-                    <MainChatIcon />
-                </div>
-                <div className="chat-icon-window">
-                    <ChatIconWindow />
-                </div>
+                <MainChatIcon />
+                <ChatIconWindow />
             </div>
         )
     }

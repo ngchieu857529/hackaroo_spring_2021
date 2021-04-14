@@ -20,6 +20,7 @@ code {
 }
 .chat-icon-window {
   position: fixed;
+  width: 350px;
   right: 30px;
   bottom: 150px;
   visibility: hidden;

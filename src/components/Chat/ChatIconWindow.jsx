@@ -55,19 +55,21 @@ export default class ChatBotWindow extends React.Component {
 
     render() {
         return (
-            <div className="col-md-12">
-                <ThemeProvider theme={chatbotTheme}>
-                    <ChatBot
-                        // handleEnd={this.submitForm.bind(this)}
-                        headerTitle="Chatbot"
-                        speechSynthesis={{ enable: true, lang: 'en', voice: this.state.voice }}
-                        steps={this.state.steps}
-                        placeholder="Enter a message"
-                        recognitionEnable={true}
-                        width="100%"
-                        userDelay={0}
-                    />
-                </ThemeProvider>
+            <div className="chat-icon-window">
+                <div className="col-md-12">
+                    <ThemeProvider theme={chatbotTheme}>
+                        <ChatBot
+                            // handleEnd={this.submitForm.bind(this)}
+                            headerTitle="Chatbot"
+                            speechSynthesis={{ enable: true, lang: 'en', voice: this.state.voice }}
+                            steps={this.state.steps}
+                            placeholder="Enter a message"
+                            recognitionEnable={true}
+                            width="100%"
+                            userDelay={0}
+                        />
+                    </ThemeProvider>
+                </div>
             </div>
         )
     }
