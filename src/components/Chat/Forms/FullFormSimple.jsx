@@ -1,11 +1,11 @@
 import React from "react"
 import update from "immutability-helper"
 import PropTypes from "prop-types"
-import { modal } from "../../controllers/modal"
+import { modal } from "../../../controllers/modal"
 
 var currentData = {}
 
-export default class RequestFormSimple extends React.Component {
+export default class FullFormSimple extends React.Component {
     constructor(props) {
         super(props);
 
@@ -261,8 +261,8 @@ export default class RequestFormSimple extends React.Component {
         const userData = this.state.userData;
         const feetOptions = this.buildNumbersList(1, 8)
         const inchOptions = this.buildNumbersList(0, 12)
-        const ageOptions = this.buildNumbersList(1, 100)
-        const childrenOptions = this.buildNumbersList(0, 10)
+        const ageOptions = this.buildNumbersList(1, 120)
+        const childrenOptions = this.buildNumbersList(0, 20)
 
         if (this.edit === true) {
             return (
@@ -426,12 +426,12 @@ export default class RequestFormSimple extends React.Component {
     }
 }
 
-RequestFormSimple.propTypes = {
+FullFormSimple.propTypes = {
     steps: PropTypes.object,
     triggerNextStep: PropTypes.func,
 };
 
-RequestFormSimple.defaultProps = {
+FullFormSimple.defaultProps = {
     steps: undefined,
     triggerNextStep: undefined,
 };

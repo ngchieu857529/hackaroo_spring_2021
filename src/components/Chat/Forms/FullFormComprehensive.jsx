@@ -1,11 +1,11 @@
 import React from "react"
 import update from "immutability-helper"
 import PropTypes from "prop-types"
-import { modal } from "../../controllers/modal"
+import { modal } from "../../../controllers/modal"
 
 var currentData = {}
 
-export default class RequestFormComprehensive extends React.Component {
+export default class FullFormComprehensive extends React.Component {
     constructor(props) {
         super(props);
 
@@ -259,12 +259,12 @@ export default class RequestFormComprehensive extends React.Component {
     }
 }
 
-RequestFormComprehensive.propTypes = {
+FullFormComprehensive.propTypes = {
     steps: PropTypes.object,
     triggerNextStep: PropTypes.func,
 };
 
-RequestFormComprehensive.defaultProps = {
+FullFormComprehensive.defaultProps = {
     steps: undefined,
     triggerNextStep: undefined,
 };
