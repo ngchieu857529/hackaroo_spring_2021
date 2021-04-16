@@ -262,7 +262,7 @@ export default class FullFormSimple extends React.Component {
         const feetOptions = this.buildNumbersList(1, 8)
         const inchOptions = this.buildNumbersList(0, 12)
         const ageOptions = this.buildNumbersList(1, 120)
-        const childrenOptions = this.buildNumbersList(0, 20)
+        const childrenOptions = this.buildNumbersList(0, 9)
 
         if (this.edit === true) {
             return (

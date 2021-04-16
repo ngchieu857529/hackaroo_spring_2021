@@ -270,7 +270,7 @@ export default class ChatBotWindow extends React.Component {
                             return "You must enter something!"
                         } else if (isNaN(value)) {
                             return "You must enter a valid number!"
-                        } else if (testInt.test(value) === false || value < 0 || value > 20) {
+                        } else if (testInt.test(value) === false || value < 0 || value > 9) {
                             return "This doesn't seem like a valid number for a number of children. Please try again!"
                         }
                         return true;

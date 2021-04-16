@@ -139,7 +139,7 @@ code {
 }
 .chat-icon-window {
   position: fixed;
-  width: 350px;
+  width: 600px;
   right: 30px;
   bottom: 150px;
   visibility: hidden;
