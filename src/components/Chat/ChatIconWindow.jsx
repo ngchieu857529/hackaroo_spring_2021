@@ -1,6 +1,7 @@
 import React from "react"
 import ChatBot from "react-simple-chatbot"
 import { ThemeProvider } from "styled-components"
+import NewWindow from 'react-new-window'
 
 import FullFormSimple from "./Forms/FullFormSimple"
 import FullFormComprehensive from "./Forms/FullFormComprehensive"
@@ -27,6 +28,8 @@ export default class ChatBotWindow extends React.Component {
         this.state = {
             voice: null,
             currentStepId: 0,
+            showPaymentPortal: false,
+            showChatWithAgentComponent: false,
             steps: [
                 {
                     id: "start_chat",
@@ -89,7 +92,7 @@ export default class ChatBotWindow extends React.Component {
                 {
                     id: "confirm_submission_simple",
                     options: [
-                        { value: "Yes", label: "Yes", trigger: "end_chat" },
+                        { value: "Yes", label: "Yes", trigger: "ask_choose_next_step" },
                         { value: "No", label: "No", trigger: "reject_submission_simple" },
                     ],
                 },
@@ -128,7 +131,7 @@ export default class ChatBotWindow extends React.Component {
                 {
                     id: "confirm_submission_comprehensive",
                     options: [
-                        { value: "Yes", label: "Yes", trigger: "end_chat" },
+                        { value: "Yes", label: "Yes", trigger: "ask_choose_next_step" },
                         { value: "No", label: "No", trigger: "reject_submission_comprehensive" },
                     ],
                 },
@@ -317,7 +320,7 @@ export default class ChatBotWindow extends React.Component {
                 {
                     id: "confirm_submit_simple_walk_through",
                     options: [
-                        { value: "Yes", label: "Yes", trigger: "end_chat" },
+                        { value: "Yes", label: "Yes", trigger: "ask_choose_next_step" },
                         { value: "No", label: "No", trigger: "reject_submit_simple_walk_through" },
                     ],
                 },
@@ -337,7 +340,7 @@ export default class ChatBotWindow extends React.Component {
                         { value: "edit_children", label: "Edit number of children", trigger: "simple_edit_children" },
                         { value: "edit_smoke", label: "Edit smoke value", trigger: "simple_edit_smoke" },
                         { value: "edit_region", label: "Edit region", trigger: "simple_edit_region" },
-                        { value: "cancel_and_submit", label: "Cancel Edit. Everything looks good!", trigger: "end_chat" },
+                        { value: "cancel_and_submit", label: "Cancel Edit. Everything looks good!", trigger: "ask_choose_next_step" },
                     ],
                 },
                 {
@@ -433,15 +436,35 @@ export default class ChatBotWindow extends React.Component {
                 {
                     id: "start_walk_through_comprehensive",
                     message: "Comprehensive Walk Through TBD!",
-                    trigger: "end_chat"
+                    trigger: "ask_choose_next_step"
                 },
 
                 /* END OF WALK THROUGH FLOW */
 
+                /* ASK NEXT STEP */
+                {
+                    id: "ask_choose_next_step",
+                    message: "Your form has been submitted. Please see the main page for your recommended plan. What do you want to do next?",
+                    trigger: "choose_next_step",
+                },
+                {
+                    id: "choose_next_step",
+                    options: [
+                        { value: "pay", label: "Pay for your insurance plan", trigger: "end_chat_with_action" },
+                        { value: "chat_with_agent", label: "Chat to a live agent", trigger: "end_chat_with_action" },
+                        { value: "end_chat", label: "Nothing. That's it for me!", trigger: "end_chat" },
+                    ],
+                },
+
                 //End Chat
                 {
+                    id: "end_chat_with_action",
+                    message: "Thank you for talking with me today! Refer to the new popup window for your next step!",
+                    end: true,
+                },
+                {
                     id: "end_chat",
-                    message: "Thank you for talking with me today! Please see your result on the main page!",
+                    message: "Thank you for talking with me today!",
                     end: true,
                 },
             ]
@@ -460,6 +483,16 @@ export default class ChatBotWindow extends React.Component {
 
     submitForm({steps, values}) {
         var curFormData = currentFormData
+
+        if (steps.choose_next_step.value === "pay") {
+            this.setState({
+                showPaymentPortal: true
+            })
+        } else if (steps.choose_next_step.value === "chat_with_agent") {
+            this.setState({
+                showChatWithAgentComponent: true
+            })
+        }
 
         if (Object.entries(curFormData).length !== 0) {
             if (curFormData.sex === "Male") {
@@ -536,6 +569,18 @@ export default class ChatBotWindow extends React.Component {
                             userDelay={0}
                         />
                     </ThemeProvider>
+
+                    {this.state.showPaymentPortal === true && (
+                    <NewWindow>
+                        <h1>PAYMENT PORTAL HERE</h1>
+                    </NewWindow>
+                    )}
+
+                    {this.state.showChatWithAgentComponent === true && (
+                    <NewWindow>
+                        <h1>CHAT WITH AGENT HERE!</h1>
+                    </NewWindow>
+                    )}
                 </div>
             </div>
         )
