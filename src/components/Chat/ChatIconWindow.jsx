@@ -1,12 +1,13 @@
-import React from "react"
-import ChatBot from "react-simple-chatbot"
-import { ThemeProvider } from "styled-components"
+import React from 'react'
+import ChatBot from 'react-simple-chatbot'
+import { ThemeProvider } from 'styled-components'
 import NewWindow from 'react-new-window'
 
 import FullFormSimple from "./Forms/FullFormSimple"
 import FullFormComprehensive from "./Forms/FullFormComprehensive"
 import WalkThroughFormSimple from "./Forms/WalkThroughFormSimple"
 import { chatBot } from "../../controllers/chatBot"
+import PaymentFormPortal from "../PaymenPortal/PaymentFormPortal"
 
 const chatbotTheme = {
     background: '#f5f8fb',
@@ -30,6 +31,7 @@ export default class ChatBotWindow extends React.Component {
             currentStepId: 0,
             showPaymentPortal: false,
             showChatWithAgentComponent: false,
+            insuranceData: null,
             steps: [
                 {
                     id: "start_chat",
@@ -482,17 +484,8 @@ export default class ChatBotWindow extends React.Component {
     }
 
     submitForm({steps, values}) {
+        var self = this
         var curFormData = currentFormData
-
-        if (steps.choose_next_step.value === "pay") {
-            this.setState({
-                showPaymentPortal: true
-            })
-        } else if (steps.choose_next_step.value === "chat_with_agent") {
-            this.setState({
-                showChatWithAgentComponent: true
-            })
-        }
 
         if (Object.entries(curFormData).length !== 0) {
             if (curFormData.sex === "Male") {
@@ -549,7 +542,19 @@ export default class ChatBotWindow extends React.Component {
         }
 
         chatBot.processRequestSimpleForm(curFormData, function(response) {
-            console.log(response)
+            self.setState({
+                insuranceData: response.data
+            })
+            
+            if (steps.choose_next_step.value === "pay") {
+                self.setState({
+                    showPaymentPortal: true
+                })
+            } else if (steps.choose_next_step.value === "chat_with_agent") {
+                self.setState({
+                    showChatWithAgentComponent: true
+                })
+            }
         })
     }
 
@@ -572,7 +577,7 @@ export default class ChatBotWindow extends React.Component {
 
                     {this.state.showPaymentPortal === true && (
                     <NewWindow>
-                        <h1>PAYMENT PORTAL HERE</h1>
+                        <PaymentFormPortal insuranceData={this.state.insuranceData}/>
                     </NewWindow>
                     )}
 
