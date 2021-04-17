@@ -1,6 +1,6 @@
 import { server } from "./server"
 import { modal } from "./modal"
-import axios from "axios"
+import axios from 'axios'
 
 class ChatBot {
     constructor() {

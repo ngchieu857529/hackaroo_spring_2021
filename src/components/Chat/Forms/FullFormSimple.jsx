@@ -1,6 +1,6 @@
-import React from "react"
-import update from "immutability-helper"
-import PropTypes from "prop-types"
+import React from 'react'
+import update from 'immutability-helper'
+import PropTypes from 'prop-types'
 import { modal } from "../../../controllers/modal"
 
 var currentData = {}

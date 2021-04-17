@@ -1,5 +1,5 @@
-import React from "react"
-import $ from "jquery"
+import React from 'react'
+import $ from 'jquery'
 
 export default class MainChatIcon extends React.Component {
     constructor(props) {
