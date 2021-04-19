@@ -12,6 +12,17 @@ code {
     monospace;
 }
 
+.ui.inverted.menu {
+  background: peru !important;
+  position: fixed !important;
+}
+/* 150px is the width of sidebar */
+.page-container {
+  margin-left: 151px;
+  height: 100%;
+  min-height: 97vh;
+}
+
 .form-control,
 .input-group-addon,
 .tagsinput,
