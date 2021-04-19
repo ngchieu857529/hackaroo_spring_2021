@@ -8,6 +8,7 @@ import FullFormComprehensive from "./Forms/FullFormComprehensive"
 import WalkThroughFormSimple from "./Forms/WalkThroughFormSimple"
 import { chatBot } from "../../controllers/chatBot"
 import PaymentFormPortal from "../PaymenPortal/PaymentFormPortal"
+import ChatWithAgent from "../ChatWithAgent/ChatWithAgent.jsx"
 
 const chatbotTheme = {
     background: '#f5f8fb',
@@ -484,6 +485,10 @@ export default class ChatBotWindow extends React.Component {
     }
 
     submitForm({steps, values}) {
+        if (steps.start_options.value === "Quit") {
+            return
+        }
+
         var self = this
         var curFormData = currentFormData
 
@@ -583,7 +588,7 @@ export default class ChatBotWindow extends React.Component {
 
                     {this.state.showChatWithAgentComponent === true && (
                     <NewWindow>
-                        <h1>CHAT WITH AGENT HERE!</h1>
+                        <ChatWithAgent />
                     </NewWindow>
                     )}
                 </div>

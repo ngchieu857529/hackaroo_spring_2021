@@ -15,7 +15,6 @@
     "notifyjs": "^3.0.0",
     "payment": "^2.4.3",
     "react": "^16.3.0",
-    "react-chat-plugin": "^0.1.17",
     "react-credit-cards": "^0.8.3",
     "react-dom": "^16.3.0",
     "react-final-form": "^6.5.3",
