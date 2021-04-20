@@ -586,11 +586,11 @@ export default class ChatBotWindow extends React.Component {
                     </NewWindow>
                     )}
 
-                    {this.state.showChatWithAgentComponent === true && (
+                    {/* {this.state.showChatWithAgentComponent === true && ( */}
                     <NewWindow>
                         <ChatWithAgent />
                     </NewWindow>
-                    )}
+                    {/* )} */}
                 </div>
             </div>
         )
