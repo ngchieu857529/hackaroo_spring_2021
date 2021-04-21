@@ -12,10 +12,10 @@ import PaymentFormPortal from "../PaymenPortal/PaymentFormPortal"
 
 const chatbotTheme = {
     background: '#f5f8fb',
-    headerBgColor: '#CD853F',
+    headerBgColor: '#00B050',
     headerFontColor: '#FFFFFF',
     headerFontSize: '25px',
-    botBubbleColor: '#CD853F',
+    botBubbleColor: '#00B050',
     botFontColor: '#FFFFFF',
     userBubbleColor: '#28a745',
     userFontColor: '#FFFFFF',
@@ -66,7 +66,7 @@ export default class ChatBotWindow extends React.Component {
             steps: [
                 {
                     id: "start_chat",
-                    message: "Hello! I am a bot agent, and I am here to assist you with your insurance plan. What do you need help with?",
+                    message: "Hello! I am a virtual assistance, and I am here to assist you with your insurance plan. What do you need help with?",
                     trigger: "start_options"
                 },
                 {
@@ -497,8 +497,8 @@ export default class ChatBotWindow extends React.Component {
                     <ThemeProvider theme={chatbotTheme}>
                         <ChatBot
                             handleEnd={this.submitForm.bind(this)}
-                            headerTitle="Chatbot"
-                            // speechSynthesis={{ enable: true, lang: 'en', voice: this.state.voice }}
+                            headerTitle="Virtual Assistance"
+                            speechSynthesis={{ enable: true, lang: 'en', voice: this.state.voice }}
                             steps={this.state.steps}
                             placeholder="Enter a message"
                             recognitionEnable={true}

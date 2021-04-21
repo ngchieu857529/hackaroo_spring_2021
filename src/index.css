@@ -13,7 +13,7 @@ code {
 }
 
 .ui.inverted.menu {
-  background: peru !important;
+  background: #00B050 !important;
   position: fixed !important;
 }
 /* 150px is the width of sidebar */
@@ -21,6 +21,7 @@ code {
   margin-left: 151px;
   height: 100%;
   min-height: 97vh;
+  max-height: 97vh;
 }
 
 .form-control,
@@ -153,7 +154,7 @@ code {
   position: fixed;
   width: 600px;
   right: 30px;
-  bottom: 150px;
+  bottom: 110px;
   visibility: hidden;
 }
 .submit_button_form{

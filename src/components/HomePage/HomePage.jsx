@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import MainChatIcon from "../Chat/MainChatIcon"
 import ChatIconWindow from "../Chat/ChatIconWindow"
 import Covid19Info from "../Covid19Info/Covid19Info"
+import HealthInsurance from "../HealthInsurance/HealthInsurance"
 import NotFound from "../NotFound/NotFound"
 
 export default class HomePage extends React.Component {
@@ -79,7 +80,7 @@ export default class HomePage extends React.Component {
                             <Switch>
                                 <Route exact path="/" component={Covid19Info} />
                                 <Route exact path="/covid-19" component={Covid19Info} />
-                                <Route exact path="/health-insurance" component={Covid19Info} />
+                                <Route exact path="/health-insurance" component={HealthInsurance} />
                                 <Route component={NotFound} />
                             </Switch>
                         </Sidebar.Pushable>
