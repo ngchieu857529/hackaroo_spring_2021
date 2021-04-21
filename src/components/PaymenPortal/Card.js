@@ -23,7 +23,7 @@ const Container = styled.div`
     .rccs__card--back {
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
-        background: linear-gradient(25deg, #939393, #717171);
+        background: linear-gradient(25deg, #00B050, #717171) !important;
         border-radius: 14.5px;
         color: #fff;
         height: 100%;

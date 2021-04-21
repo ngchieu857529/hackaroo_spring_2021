@@ -99,7 +99,7 @@ export default class ChatBotWindow extends React.Component {
                 },
                 {
                     id: "confirm_submission_message_simple",
-                    message: "Below is the overview of the form. Is this correct?",
+                    message: "Below is the overview of the form. Your location was retrieved automatically by GPS. Is this correct?",
                     trigger: "submission_form_simple"
                 },
                 {
@@ -263,7 +263,7 @@ export default class ChatBotWindow extends React.Component {
                 },
                 {
                     id: "ask_submit_simple_walk_through",
-                    message: "Below is the overview of the submission. Is this correct?",
+                    message: "Below is the overview of the submission. Your location was retrieved automatically by GPS. Is this correct?",
                     trigger: "show_submit_simple_walk_through"
                 },
                 {
@@ -392,7 +392,7 @@ export default class ChatBotWindow extends React.Component {
                 /* ASK NEXT STEP */
                 {
                     id: "ask_choose_next_step",
-                    message: "Your form has been submitted. Please see the main page for your recommended plan. What do you want to do next?",
+                    message: "Your form has been submitted. What do you want to do next?",
                     trigger: "choose_next_step",
                 },
                 {
@@ -508,7 +508,7 @@ export default class ChatBotWindow extends React.Component {
                     </ThemeProvider>
 
                     {this.state.showPaymentPortal === true && (
-                    <NewWindow title="Payment Portal" name="Payment Portal">
+                    <NewWindow name="Payment Portal">
                         <PaymentFormPortal insuranceData={this.state.insuranceData}/>
                     </NewWindow>
                     )}

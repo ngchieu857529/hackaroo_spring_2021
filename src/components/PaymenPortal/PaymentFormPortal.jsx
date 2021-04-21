@@ -15,7 +15,8 @@ export default class PaymentFormPortal extends React.Component {
             cardNumber: "",
             submitted: false,
             curPlanType: "",
-            curPlanName: ""
+            curPlanName: "",
+            curPlanPrice: ""
         }
     }
 
@@ -25,9 +26,16 @@ export default class PaymentFormPortal extends React.Component {
 
         Object.keys(insuranceData.plans).forEach(function(type) {
             Object.keys(insuranceData.plans[type]).forEach(function(plan) {
+                var price = ""
+                Object.keys(insuranceData.plans[type][plan]).forEach(function(detail) {
+                    if (detail.includes("Age")) {
+                        price = insuranceData.plans[type][plan][detail]
+                    }
+                })
                 self.setState({
                     curPlanType: type,
-                    curPlanName: insuranceData.plans[type][plan]["Plan Marketing Name"]
+                    curPlanName: insuranceData.plans[type][plan]["Plan Marketing Name"],
+                    curPlanPrice: price
                 })
             })
         })
@@ -51,7 +59,7 @@ export default class PaymentFormPortal extends React.Component {
                     }
                 })
                 return (
-                    <option key={type + " - " + insuranceData.plans[type][plan]["Plan Marketing Name"] + " - $" + price} value={type + " - " + insuranceData.plans[type][plan]["Plan Marketing Name"] + " - $" + price}>{type + " - " + insuranceData.plans[type][plan]["Plan Marketing Name"] + " - $" + price}</option>
+                    <option key={type + " - " + insuranceData.plans[type][plan]["Plan Marketing Name"] + " - $" + price + "/month"} value={type + " - " + insuranceData.plans[type][plan]["Plan Marketing Name"] + " - $" + price + "/month"}>{type + " - " + insuranceData.plans[type][plan]["Plan Marketing Name"] + " - $" + price + "/month"}</option>
                 )
             })
         })
@@ -62,7 +70,8 @@ export default class PaymentFormPortal extends React.Component {
         return Object.keys(insuranceData.plans).map(function(type) {
             return (
                 <div className="col-md-12">
-                    {Object.keys(insuranceData.plans[type]).forEach(function(plan) {
+                    {/* eslint-disable-next-line */}
+                    {Object.keys(insuranceData.plans[type]).map(function(plan) {
                         if (insuranceData.plans[type][plan]["Plan Marketing Name"] === planName) {
                             return (
                                 <div className="col-md-12">
@@ -80,7 +89,11 @@ export default class PaymentFormPortal extends React.Component {
                                                     return (
                                                         <tr>
                                                             <td style={{width: "30%", textTransform: 'capitalize'}}>{detail}</td>
+                                                            {detail.includes("Age") ? (
+                                                            <td style={{width: "70%"}}>$<b>{insuranceData.plans[type][plan][detail]}</b>/month, or <b>{(insuranceData.plans[type][plan][detail] * 12).toLocaleString("en-US", {style:"currency", currency:"USD"})}</b>/year</td>
+                                                            ) : (
                                                             <td style={{width: "70%"}}>{insuranceData.plans[type][plan][detail]}</td>
+                                                            )}
                                                         </tr>        
                                                     )
                                                 })}
@@ -100,6 +113,7 @@ export default class PaymentFormPortal extends React.Component {
         const optionValue = e.target.value
         var firstIndex = 0
         var secondIndex = optionValue.lastIndexOf('-')
+        var lastIndexSlash = optionValue.lastIndexOf('/')
         
         for (var i = 0; i < optionValue.length; i++) {
             if (optionValue[i] === "-") {
@@ -110,10 +124,12 @@ export default class PaymentFormPortal extends React.Component {
 
         const curPlanType = optionValue.substring(0, firstIndex - 1)
         const curPlanName = optionValue.substring(firstIndex + 2, secondIndex - 1)
+        const curPlanPrice = optionValue.substring(secondIndex + 3, lastIndexSlash)
 
         this.setState({
             curPlanType: curPlanType,
-            curPlanName: curPlanName
+            curPlanName: curPlanName,
+            curPlanPrice: curPlanPrice
         })
     }
 
@@ -124,7 +140,8 @@ export default class PaymentFormPortal extends React.Component {
         const plansList = this.renderPlansList();
         const curPlanType = this.state.curPlanType;
         const curPlanName = this.state.curPlanName;
-
+        const curPlanPrice = this.state.curPlanPrice;
+        
         return (
             <div>
                 {Object.keys(insuranceData.plans).length > 0 ? (
@@ -137,11 +154,11 @@ export default class PaymentFormPortal extends React.Component {
                     <div className="col-md-12">
                         <div className="col-md-12">
                             <div className="row">
-                                Based on the provided information, here is what our prediction for the charge of your insurance plan: {insuranceData.premium_charge.toLocaleString("en-US", {style:"currency", currency:"USD"})}
+                                Based on the provided information, here is what our prediction for the <b>&nbsp;ANNUAL&nbsp;</b> charge of your insurance plan: {insuranceData.premium_charge.toLocaleString("en-US", {style:"currency", currency:"USD"})}, or {(insuranceData.premium_charge / 12).toLocaleString("en-US", {style:"currency", currency:"USD"})}/month.
                             </div>
                             <br />
                             <div className="row">Select a plan below to view and pay!</div>
-                                <select style={{width: "100%"}} className="form-control" value={curPlanType + " - " + curPlanName} onChange={this.handlePlanChange.bind(this)}>
+                                <select style={{width: "100%"}} className="form-control" value={curPlanType + " - " + curPlanName + " - $" + curPlanPrice + "/month"} onChange={this.handlePlanChange.bind(this)}>
                                     {plansList}
                                 </select>
                                 <br />
@@ -227,18 +244,29 @@ export default class PaymentFormPortal extends React.Component {
                     <div>
                         <h4 style={{textAlign: "center"}}>Your payment has been submitted successfully!</h4>
                         <br />
-                        <div className="col-md-12">
+                        <div className="col-md-12" style={{textAlign: "center"}}>
                             <div>Below is the confirmation of your payment. Please save it for your record!</div>
                             <br />
-                            <div>
-                                Total Charge: {insuranceData.premium_charge.toLocaleString("en-US", {style:"currency", currency:"USD"})}
-                            </div>
-                            <div>
-                                Confirmation Number: {randomConfNum}
-                            </div>
-                            <div>
-                                Card Number: {cardNumber}
-                            </div>
+                            <div className="col-md-9 offset-md-3">
+                            <table>
+                                <th colSpan="2" style={{backgroundColor: "#00B050", color: "#FFFFFF"}}>
+                                    Receipt
+                                </th>
+                                <tbody>
+                                    <tr>
+                                        <td>Total Charge</td>
+                                        <td>{(curPlanPrice * 12).toLocaleString("en-US", {style:"currency", currency:"USD"})}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Confirmation Number</td>
+                                        <td>{randomConfNum}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Card Number</td>
+                                        <td>{cardNumber}</td>
+                                    </tr>
+                                </tbody>
+                            </table></div>
                         </div>
                     </div>
                     )}
