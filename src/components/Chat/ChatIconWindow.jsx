@@ -12,10 +12,10 @@ import PaymentFormPortal from "../PaymenPortal/PaymentFormPortal"
 
 const chatbotTheme = {
     background: '#f5f8fb',
-    headerBgColor: '#CD853F',
+    headerBgColor: '#00B050',
     headerFontColor: '#FFFFFF',
     headerFontSize: '25px',
-    botBubbleColor: '#CD853F',
+    botBubbleColor: '#00B050',
     botFontColor: '#FFFFFF',
     userBubbleColor: '#28a745',
     userFontColor: '#FFFFFF',
