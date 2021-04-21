@@ -11,7 +11,7 @@ class ChatBot {
 
     processRequestSimpleForm(data, callback) {
         axios.get(this.state.serverDomain + "/api/model/quick?height=" + data.heightCm + "&weight=" + data.weightKg + "&age=" + data.age
-        + "&children=" + data.children + "&smoker=" + data.smoker + "&region=" + data.region + "&sex=" + data.sex)
+        + "&children=" + data.children + "&smoker=" + data.smoker + "&sex=" + data.sex + "&state=" + data.state)
         .then(function(response) {
             if (callback) {
                 callback(response)

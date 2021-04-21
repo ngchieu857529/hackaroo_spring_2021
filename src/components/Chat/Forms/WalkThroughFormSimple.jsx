@@ -5,7 +5,8 @@ export default class WalkThroughFormSimple extends React.Component {
         super(props);
 
         this.state = {
-            steps: props.steps
+            steps: props.steps,
+            userState: props.userState
         };
     }
 
@@ -22,10 +23,10 @@ export default class WalkThroughFormSimple extends React.Component {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group">
-                                <label>Your Height</label>
-                                {steps.simple_height_feet.value}
+                                <label>Your Height:</label>
+                                &nbsp;&nbsp;{steps.simple_height_feet.value}&nbsp;&nbsp;
                                 ft
-                                {steps.simple_height_inch.value}
+                                &nbsp;&nbsp;{steps.simple_height_inch.value}&nbsp;&nbsp;
                                 in
                             </div>
                         </div>
@@ -33,48 +34,48 @@ export default class WalkThroughFormSimple extends React.Component {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group">
-                                <label>Your Weight (lbs)</label>
-                                {steps.simple_weight.value}
+                                <label>Your Weight (lbs):</label>
+                                &nbsp;&nbsp;{steps.simple_weight.value}
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group">
-                                <label>Your Age</label>
-                                {steps.simple_age.value}
+                                <label>Your Age:</label>
+                                &nbsp;&nbsp;{steps.simple_age.value}
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group">
-                                <label>Your Gender</label>
-                                {steps.simple_gender.value}
+                                <label>Your Gender:</label>
+                                &nbsp;&nbsp;{steps.simple_gender.value}
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group">
-                                <label># of Children</label>
-                                {steps.simple_children.value}
+                                <label># of Children:</label>
+                                &nbsp;&nbsp;{steps.simple_children.value}
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group">
-                                <label>Do you smoke?</label>
-                                {steps.simple_smoker.value}
+                                <label>Do you smoke? - </label>
+                                &nbsp;&nbsp;{steps.simple_smoker.value}
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group">
-                                <label>Your Region</label>
-                                {steps.simple_region.value}
+                                <label>Your State:</label>
+                                &nbsp;&nbsp;{this.state.userState}
                             </div>
                         </div>
                     </div>

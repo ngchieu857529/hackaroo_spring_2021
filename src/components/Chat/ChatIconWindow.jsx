@@ -2,13 +2,13 @@ import React from 'react'
 import ChatBot from 'react-simple-chatbot'
 import { ThemeProvider } from 'styled-components'
 import NewWindow from 'react-new-window'
+import Geocode from "react-geocode"
 
 import FullFormSimple from "./Forms/FullFormSimple"
-import FullFormComprehensive from "./Forms/FullFormComprehensive"
 import WalkThroughFormSimple from "./Forms/WalkThroughFormSimple"
 import { chatBot } from "../../controllers/chatBot"
 import PaymentFormPortal from "../PaymenPortal/PaymentFormPortal"
-import ChatWithAgent from "../ChatWithAgent/ChatWithAgent.jsx"
+// import ChatWithAgent from "../ChatWithAgent/ChatWithAgent.jsx"
 
 const chatbotTheme = {
     background: '#f5f8fb',
@@ -22,6 +22,36 @@ const chatbotTheme = {
 };
 
 var currentFormData = {}
+
+function getcurrentLocation() {
+    if (navigator && navigator.geolocation) {
+        return new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(pos => {
+                const coords = pos.coords;
+                resolve({
+                    lat: coords.latitude,
+                    lng: coords.longitude
+                });
+            });
+        });
+    }
+}
+
+var userState = "MO"
+var curLocation = getcurrentLocation();
+
+curLocation.then(function(result){
+    if (result.lat != null && result.lng != null) {
+        Geocode.fromLatLng(result.lat, result.lng, "AIzaSyAAKEUHaLzR2U_-XBdTwPE_VZ39ZPh6hb8").then(
+            (response) => {
+                userState = response.results[0]["address_components"][6]["short_name"]
+            },
+            (error) => {
+                console.error(error);
+            }
+        );
+    }
+})
 
 export default class ChatBotWindow extends React.Component {
     constructor(props) {
@@ -62,7 +92,7 @@ export default class ChatBotWindow extends React.Component {
                 //Entire Form's flow - Simple
                 {
                     id: "start_fill_form_simple",
-                    component: <FullFormSimple edit={true} onChangeFormData={this.onChangeFormData} />,
+                    component: <FullFormSimple userState={userState} edit={true} onChangeFormData={this.onChangeFormData} />,
                     asMessage: true,
                     waitAction: true,
                     trigger: "confirm_submission_message_simple"
@@ -74,7 +104,7 @@ export default class ChatBotWindow extends React.Component {
                 },
                 {
                     id: "submission_form_simple",
-                    component: <FullFormSimple edit={false} onChangeFormData={this.onChangeFormData} />,
+                    component: <FullFormSimple userState={userState} edit={false} onChangeFormData={this.onChangeFormData} />,
                     asMessage: true,
                     trigger: "confirm_submission_simple"
                 },
@@ -227,22 +257,8 @@ export default class ChatBotWindow extends React.Component {
                 {
                     id: "simple_smoker",
                     options: [
-                        { value: "Yes", label: "Yes", trigger: "simple_ask_region" },
-                        { value: "No", label: "No", trigger: "simple_ask_region" },
-                    ],
-                },
-                {
-                    id: "simple_ask_region",
-                    message: "Select your region!",
-                    trigger: "simple_region"
-                },
-                {
-                    id: "simple_region",
-                    options: [
-                        { value: "Northeast", label: "Northeast", trigger: "ask_submit_simple_walk_through" },
-                        { value: "Northwest", label: "Northwest", trigger: "ask_submit_simple_walk_through" },
-                        { value: "Southeast", label: "Southeast", trigger: "ask_submit_simple_walk_through" },
-                        { value: "Southwest", label: "Southwest", trigger: "ask_submit_simple_walk_through" },
+                        { value: "Yes", label: "Yes", trigger: "ask_submit_simple_walk_through" },
+                        { value: "No", label: "No", trigger: "ask_submit_simple_walk_through" },
                     ],
                 },
                 {
@@ -252,7 +268,7 @@ export default class ChatBotWindow extends React.Component {
                 },
                 {
                     id: "show_submit_simple_walk_through",
-                    component: <WalkThroughFormSimple />,
+                    component: <WalkThroughFormSimple userState={userState} />,
                     asMessage: true,
                     trigger: "confirm_submit_simple_walk_through"
                 },
@@ -383,7 +399,7 @@ export default class ChatBotWindow extends React.Component {
                     id: "choose_next_step",
                     options: [
                         { value: "pay", label: "Pay for your insurance plan", trigger: "end_chat_with_action" },
-                        { value: "chat_with_agent", label: "Chat to a live agent", trigger: "end_chat_with_action" },
+                        // { value: "chat_with_agent", label: "Chat to a live agent", trigger: "end_chat_with_action" },
                         { value: "end_chat", label: "Nothing. That's it for me!", trigger: "end_chat" },
                     ],
                 },
@@ -434,16 +450,6 @@ export default class ChatBotWindow extends React.Component {
                 curFormData.smoker = 1
             }
 
-            if (curFormData.region === "Northeast") {
-                curFormData.region = 0
-            } else if (curFormData.region === "Northwest") {
-                curFormData.region = 1
-            } else if (curFormData.region === "Southeast") {
-                curFormData.region = 2
-            } else if (curFormData.region === "Southwest") {
-                curFormData.region = 3
-            }
-
             curFormData.heightCm = curFormData.heightFeet * 30.48 + curFormData.heightInch * 2.54
             curFormData.weightKg = curFormData.weight * 0.45359237
         } else {
@@ -464,15 +470,7 @@ export default class ChatBotWindow extends React.Component {
                 curFormData.smoker = 1
             }
 
-            if (steps.simple_region.value === "Northeast") {
-                curFormData.region = 0
-            } else if (steps.simple_region.value === "Northwest") {
-                curFormData.region = 1
-            } else if (steps.simple_region.value === "Southeast") {
-                curFormData.region = 2
-            } else if (steps.simple_region.value === "Southwest") {
-                curFormData.region = 3
-            }
+            curFormData.state = userState
         }
 
         chatBot.processRequestSimpleForm(curFormData, function(response) {
@@ -510,14 +508,14 @@ export default class ChatBotWindow extends React.Component {
                     </ThemeProvider>
 
                     {this.state.showPaymentPortal === true && (
-                    <NewWindow>
+                    <NewWindow title="Payment Portal" name="Payment Portal">
                         <PaymentFormPortal insuranceData={this.state.insuranceData}/>
                     </NewWindow>
                     )}
 
                     {this.state.showChatWithAgentComponent === true && (
                     <NewWindow>
-                        <ChatWithAgent />
+                        {/* <ChatWithAgent /> */}
                     </NewWindow>
                     )}
                 </div>

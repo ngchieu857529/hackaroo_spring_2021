@@ -11,7 +11,7 @@ class Modal {
 		// #  Reset data
 		this.resetModals();
 
-		var html = '<div class="modal fade" tabindex="-1" role="dialog"><div class="modal-dialog modal-sm"><div class="modal-content"> <div class="modal-header alert-danger"><button type="button" class="close" data-dismiss="modal" aria-label="Ok"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="gridSystemModalLabel">'+title+'</h4></div><div class="modal-body"><div class="row"><div class="col-lg-10">'+message+'</div></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>';
+		var html = '<div classNameName="modal fade" tabindex="-1" role="dialog"><div className="modal-dialog modal-sm"><div className="modal-content"> <div className="modal-header alert-danger"><button type="button" className="close" data-dismiss="modal" aria-label="Ok"><span aria-hidden="true">&times;</span></button><h4 className="modal-title" id="gridSystemModalLabel">'+title+'</h4></div><div className="modal-body"><div className="row"><div className="col-lg-10">'+message+'</div></div><div className="modal-footer"><button type="button" className="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>';
 		$(this.bodyDom).append(html);
 		$(".modal").modal('show');
 	}
@@ -19,23 +19,23 @@ class Modal {
 		// #  Reset data
 		this.resetModals();
 
-		var html = '<div class="modal fade" tabindex="-1" role="dialog"><div class="modal-dialog modal-sm"><div class="modal-content"> <div class="modal-header alert-danger"><button type="button" class="close" data-dismiss="modal" aria-label="Ok"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="gridSystemModalLabel">'+title+'</h4></div><div class="modal-body"><div class="row"><div class="col-lg-10">'+message+'</div></div><div class="modal-footer">       <button type="button" class="btn btn-default move-on" data-dismiss="modal">'+okText+'</button>       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>';
+		var html = '<div className="modal fade" tabindex="-1" role="dialog"><div className="modal-dialog modal-sm"><div className="modal-content"> <div className="modal-header alert-danger"><button type="button" className="close" data-dismiss="modal" aria-label="Ok"><span aria-hidden="true">&times;</span></button><h4 className="modal-title" id="gridSystemModalLabel">'+title+'</h4></div><div className="modal-body"><div className="row"><div className="col-lg-10">'+message+'</div></div><div className="modal-footer">       <button type="button" className="btn btn-default move-on" data-dismiss="modal">'+okText+'</button>       <button type="button" className="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>';
 		$(this.bodyDom).append(html);
 		$(".modal").modal('show');
 	}
 	showSuccessModalWithOK(title,message,okText) {
 		this.resetModals();
 
-		var html = '<div class="modal fade" tabindex="-1" role="dialog"><div class="modal-dialog modal-sm"><div class="modal-content"> <div class="modal-header alert-success"><button type="button" class="close" data-dismiss="modal" aria-label="Ok"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="gridSystemModalLabel">'+title+'</h4></div><div class="modal-body"><div class="row"><div class="col-lg-10">'+message+'</div></div><div class="modal-footer"><button type="button" class="btn btn-default move-on" data-dismiss="modal">'+okText+'</button>       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>';
+		var html = '<div className="modal fade" tabindex="-1" role="dialog"><div className="modal-dialog modal-sm"><div className="modal-content"> <div className="modal-header alert-success"><button type="button" className="close" data-dismiss="modal" aria-label="Ok"><span aria-hidden="true">&times;</span></button><h4 className="modal-title" id="gridSystemModalLabel">'+title+'</h4></div><div className="modal-body"><div className="row"><div className="col-lg-10">'+message+'</div></div><div className="modal-footer"><button type="button" className="btn btn-default move-on" data-dismiss="modal">'+okText+'</button>       <button type="button" className="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>';
 		$(this.bodyDom).append(html);
 		$(".modal").modal('show');
 	}
 	showSuccess(title, message, goToLink, goToText) {
 		// #  Reset data
 		this.resetModals();
-		var html = '<div class="modal fade" tabindex="-1" role="dialog"><div class="modal-dialog modal-sm"><div class="modal-content"> <div class="modal-header alert-success"><button type="button" class="close" data-dismiss="modal" aria-label="Ok"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="gridSystemModalLabel">'+title+'</h4></div><div class="modal-body"><div class="row"><div class="col-lg-10">'+message+'</div></div><div class="modal-footer"><button type="button" class="btn btn-default move-on" data-dismiss="modal">Close</button></div></div></div></div>';
+		var html = '<div className="modal fade" tabindex="-1" role="dialog"><div className="modal-dialog modal-sm"><div className="modal-content"> <div className="modal-header alert-success"><button type="button" className="close" data-dismiss="modal" aria-label="Ok"><span aria-hidden="true">&times;</span></button><h4 className="modal-title" id="gridSystemModalLabel">'+title+'</h4></div><div className="modal-body"><div className="row"><div className="col-lg-10">'+message+'</div></div><div className="modal-footer"><button type="button" className="btn btn-default move-on" data-dismiss="modal">Close</button></div></div></div></div>';
 		if(goToLink) {
-			html = '<div class="modal fade" tabindex="-1" role="dialog"><div class="modal-dialog modal-sm"><div class="modal-content"> <div class="modal-header alert-success"><button type="button" class="close" data-dismiss="modal" aria-label="Ok"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="gridSystemModalLabel">'+title+'</h4></div><div class="modal-body"><div class="row"><div class="col-lg-10">'+message+'</div></div><div class="modal-footer"><button type="button" class="btn btn-default move-on" data-dismiss="modal">Close</button><button type="button" class="btn btn-default goto" data-dismiss="modal">'+goToText+'</button></div></div></div></div>';
+			html = '<div className="modal fade" tabindex="-1" role="dialog"><div className="modal-dialog modal-sm"><div className="modal-content"> <div className="modal-header alert-success"><button type="button" className="close" data-dismiss="modal" aria-label="Ok"><span aria-hidden="true">&times;</span></button><h4 className="modal-title" id="gridSystemModalLabel">'+title+'</h4></div><div className="modal-body"><div className="row"><div className="col-lg-10">'+message+'</div></div><div className="modal-footer"><button type="button" className="btn btn-default move-on" data-dismiss="modal">Close</button><button type="button" className="btn btn-default goto" data-dismiss="modal">'+goToText+'</button></div></div></div></div>';
 		}
 		$(this.bodyDom).append(html);
 		$(".modal").modal('show');
@@ -77,17 +77,17 @@ class Modal {
 	showPopOverWithDataEntry(title, message, formFields = '', saveMessage = 'Let\'s Go!', callback = null) {
 		// #  Reset data
 		this.resetModals();
-		var html = '<div class="modal fade" tabindex="-1" role="dialog">' +
-		'<div class="modal-dialog modal-sm"><div class="modal-content">' + 
-		'<div class="modal-header alert-info">' +
-		'<button type="button" class="close" data-dismiss="modal" aria-label="Ok">' +
+		var html = '<div className="modal fade" tabindex="-1" role="dialog">' +
+		'<div className="modal-dialog modal-sm"><div className="modal-content">' + 
+		'<div className="modal-header alert-info">' +
+		'<button type="button" className="close" data-dismiss="modal" aria-label="Ok">' +
 		'<span aria-hidden="true">&times;</span>' +
 		'</button>' +
-		'<h4 class="modal-title" id="gridSystemModalLabel">'+title+'</h4></div>' +
-		'<div class="modal-body"><div class="row"> ' +
-		'<div class="col-lg-12">'+message+''+formFields+'</div></div> '+
-		'<div class="modal-footer"><button type="button" class="btn btn-default move-on" data-dismiss="modal">'+saveMessage+'</button>' +
-		'<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
+		'<h4 className="modal-title" id="gridSystemModalLabel">'+title+'</h4></div>' +
+		'<div className="modal-body"><div className="row"> ' +
+		'<div className="col-lg-12">'+message+''+formFields+'</div></div> '+
+		'<div className="modal-footer"><button type="button" className="btn btn-default move-on" data-dismiss="modal">'+saveMessage+'</button>' +
+		'<button type="button" className="btn btn-default" data-dismiss="modal">Close</button>' +
 		'</div></div></div></div>';
 
 		$(this.bodyDom).append(html);

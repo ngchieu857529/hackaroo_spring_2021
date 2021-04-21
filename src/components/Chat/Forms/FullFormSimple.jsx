@@ -19,7 +19,7 @@ export default class FullFormSimple extends React.Component {
                 sex: "Male",
                 children: 0,
                 smoker: "No",
-                region: "Northeast",
+                state: props.userState,
             }
         };
 
@@ -206,28 +206,6 @@ export default class FullFormSimple extends React.Component {
         }
     }
 
-    handleRegionChange(e) {
-        if (this.state.userData) {
-            if (this.state.userData.region) {
-                this.setState({
-                    userData: update(this.state.userData, {
-                        region: {$set: e.target.value}
-                    })
-                });
-            } else {
-                const newUserData = {...this.state.userData, region: e.target.value}
-                this.setState({
-                    userData: newUserData
-                })
-            }
-        } else {
-            const newUserData = {...this.state.userData, region: e.target.value}
-            this.setState({
-                userData: newUserData
-            })
-        }
-    }
-
     validate() {
         const userData = this.state.userData;
 
@@ -337,22 +315,9 @@ export default class FullFormSimple extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="col-md-12">
-                                <div className="form-group">
-                                    <label>Your Region</label>
-                                    <select className="form-control" value={userData.region} onChange={this.handleRegionChange.bind(this)}>
-                                        <option value="Northeast">Northeast</option>
-                                        <option value="Northwest">Northwest</option>
-                                        <option value="Southeast">Southeast</option>
-                                        <option value="Southwest">Southwest</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
                         {!this.state.trigger && (
                         <div className="row">
-                            <button class="submit_button_form" type="button" onClick={this.saveSubmission.bind(this)}>
+                            <button className="submit_button_form" type="button" onClick={this.saveSubmission.bind(this)}>
                                 Save Submission
                             </button>
                         </div>
@@ -418,8 +383,8 @@ export default class FullFormSimple extends React.Component {
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="form-group">
-                                    <label>Your Region:</label>
-                                    &nbsp;&nbsp;{userData.region}
+                                    <label>Your State:</label>
+                                    &nbsp;&nbsp;{userData.state}
                                 </div>
                             </div>
                         </div>
