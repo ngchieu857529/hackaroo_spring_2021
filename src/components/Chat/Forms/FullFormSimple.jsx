@@ -270,16 +270,20 @@ export default class FullFormSimple extends React.Component {
                     <div className="col-md-12">
                         <div className="row">
                             <div className="col-md-12">
-                                <div className="form-group">
-                                    <label>Your Height</label>
+                                <div className="form-group" style={{display: "flex", flexDirection: "row"}}>
+                                    <label>Your Height&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                     <select className="form-control" value={userData.heightFeet} onChange={this.handleHeightFeetChange.bind(this)}>
                                         { feetOptions }
                                     </select>
-                                    ft
+                                    <div style={{marginTop: "10px"}}>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;ft&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </div>
                                     <select className="form-control" value={userData.heightInch} onChange={this.handleHeightInchChange.bind(this)}>
                                         { inchOptions }
                                     </select>
-                                    in
+                                    <div style={{marginTop: "10px"}}>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;in
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -348,7 +352,7 @@ export default class FullFormSimple extends React.Component {
                         </div>
                         {!this.state.trigger && (
                         <div className="row">
-                            <button type="button" onClick={this.saveSubmission.bind(this)}>
+                            <button class="submit_button_form" type="button" onClick={this.saveSubmission.bind(this)}>
                                 Save Submission
                             </button>
                         </div>
@@ -363,10 +367,10 @@ export default class FullFormSimple extends React.Component {
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="form-group">
-                                    <label>Your Height</label>
-                                    {userData.heightFeet}
+                                    <label>Your Height:</label>
+                                    &nbsp;&nbsp;{userData.heightFeet}&nbsp;&nbsp;
                                     ft
-                                    {userData.heightInch}
+                                    &nbsp;&nbsp;{userData.heightInch}&nbsp;&nbsp;
                                     in
                                 </div>
                             </div>
@@ -374,48 +378,48 @@ export default class FullFormSimple extends React.Component {
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="form-group">
-                                    <label>Your Weight (lbs)</label>
-                                    {userData.weight}
+                                    <label>Your Weight (lbs):</label>
+                                    &nbsp;&nbsp;{userData.weight}
                                 </div>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="form-group">
-                                    <label>Your Age</label>
-                                    {userData.age}
+                                    <label>Your Age:</label>
+                                    &nbsp;&nbsp;{userData.age}
                                 </div>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="form-group">
-                                    <label>Your Gender</label>
-                                    {userData.sex}
+                                    <label>Your Gender:</label>
+                                    &nbsp;&nbsp;{userData.sex}
                                 </div>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="form-group">
-                                    <label># of Children</label>
-                                    {userData.children}
+                                    <label># of Children:</label>
+                                    &nbsp;{userData.children}
                                 </div>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="form-group">
-                                    <label>Do you smoke?</label>
-                                    {userData.smoker}
+                                    <label>Do you smoke? -</label>
+                                    &nbsp;&nbsp;{userData.smoker}
                                 </div>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="form-group">
-                                    <label>Your Region</label>
-                                    {userData.region}
+                                    <label>Your Region:</label>
+                                    &nbsp;&nbsp;{userData.region}
                                 </div>
                             </div>
                         </div>
