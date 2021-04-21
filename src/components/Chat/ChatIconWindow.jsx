@@ -54,22 +54,8 @@ export default class ChatBotWindow extends React.Component {
                 {
                     id: "select_process",
                     options: [
-                        { value: "fill_form", label: "Fill out the form", trigger: "ask_form_type" },
-                        { value: "walk_through", label: "Walk through the process step-by-step", trigger: "start_walk_through" },
-                    ],
-                },
-
-                /* START OF FORM FLOW */
-                {
-                    id: "ask_form_type",
-                    message: "Do you want a simple analysis or a comprehensive analysis?",
-                    trigger: "select_form_type"
-                },
-                {
-                    id: "select_form_type",
-                    options: [
-                        { value: "simple", label: "Simple form", trigger: "start_fill_form_simple" },
-                        { value: "comprehensive", label: "Comprehensive form", trigger: "start_fill_form_comprehensive" },
+                        { value: "fill_form", label: "Fill out the form", trigger: "start_fill_form_simple" },
+                        { value: "walk_through", label: "Walk through the process step-by-step", trigger: "start_walk_through_simple" },
                     ],
                 },
                 
@@ -112,59 +98,9 @@ export default class ChatBotWindow extends React.Component {
                     ],
                 },
 
-                //Entire Form's flow - Comprehensive
-                {
-                    id: "start_fill_form_comprehensive",
-                    component: <FullFormComprehensive edit={true} onChangeFormData={this.onChangeFormData} />,
-                    asMessage: true,
-                    waitAction: true,
-                    trigger: "confirm_submission_message_comprehensive"
-                },
-                {
-                    id: "confirm_submission_message_comprehensive",
-                    message: "Below is the overview of the form. Is this correct?",
-                    trigger: "submission_form_comprehensive"
-                },
-                {
-                    id: "submission_form_comprehensive",
-                    component: <FullFormComprehensive edit={false} onChangeFormData={this.onChangeFormData} />,
-                    asMessage: true,
-                    trigger: "confirm_submission_comprehensive"
-                },
-                {
-                    id: "confirm_submission_comprehensive",
-                    options: [
-                        { value: "Yes", label: "Yes", trigger: "ask_choose_next_step" },
-                        { value: "No", label: "No", trigger: "reject_submission_comprehensive" },
-                    ],
-                },
-                {
-                    id: "reject_submission_comprehensive",
-                    message: "What would you like to do next?",
-                    trigger: "edit_submission_comprehensive"
-                },
-                {
-                    id: "edit_submission_comprehensive",
-                    options: [
-                        { value: "edit_form", label: "Edit the form", trigger: "start_fill_form_comprehensive" },
-                        { value: "cancel", label: "The form looks correct. Let's submit", trigger: "confirm_submission_message_comprehensive" },
-                    ],
-                },
                 /* END OF FORM FLOW */
 
                 /* START OF WALK THROUGH FLOW */
-                {
-                    id: "start_walk_through",
-                    message: "Do you want a simple analysis or a comprehensive analysis?",
-                    trigger: "select_bot_type"
-                },
-                {
-                    id: "select_bot_type",
-                    options: [
-                        { value: "simple", label: "Simple form", trigger: "start_walk_through_simple" },
-                        { value: "comprehensive", label: "Comprehensive form", trigger: "start_walk_through_comprehensive" },
-                    ],
-                },
 
                 //Walk through's flow - Simple
                 {
@@ -435,13 +371,6 @@ export default class ChatBotWindow extends React.Component {
                     ],
                 },
 
-                //Walk through's flow - Comprehensive
-                {
-                    id: "start_walk_through_comprehensive",
-                    message: "Comprehensive Walk Through TBD!",
-                    trigger: "ask_choose_next_step"
-                },
-
                 /* END OF WALK THROUGH FLOW */
 
                 /* ASK NEXT STEP */
@@ -586,11 +515,11 @@ export default class ChatBotWindow extends React.Component {
                     </NewWindow>
                     )}
 
-                    {/* {this.state.showChatWithAgentComponent === true && ( */}
+                    {this.state.showChatWithAgentComponent === true && (
                     <NewWindow>
                         <ChatWithAgent />
                     </NewWindow>
-                    {/* )} */}
+                    )}
                 </div>
             </div>
         )
