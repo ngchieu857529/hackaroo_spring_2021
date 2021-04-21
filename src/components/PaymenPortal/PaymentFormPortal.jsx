@@ -45,7 +45,7 @@ export default class PaymentFormPortal extends React.Component {
         return Object.keys(insuranceData.plans).map(function(type) {
             return Object.keys(insuranceData.plans[type]).map(function(plan) {
                 var price = ""
-                Object.keys(insuranceData.plans[type][plan]).map(function(detail) {
+                Object.keys(insuranceData.plans[type][plan]).forEach(function(detail) {
                     if (detail.includes("Age")) {
                         price = insuranceData.plans[type][plan][detail]
                     }
@@ -62,7 +62,7 @@ export default class PaymentFormPortal extends React.Component {
         return Object.keys(insuranceData.plans).map(function(type) {
             return (
                 <div className="col-md-12">
-                    {Object.keys(insuranceData.plans[type]).map(function(plan) {
+                    {Object.keys(insuranceData.plans[type]).forEach(function(plan) {
                         if (insuranceData.plans[type][plan]["Plan Marketing Name"] === planName) {
                             return (
                                 <div className="col-md-12">
