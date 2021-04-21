@@ -268,7 +268,7 @@ export default class FullFormSimple extends React.Component {
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="form-group">
-                                    <label>Your Weight (lbs)</label>
+                                    <label>Your Weight (pounds)</label>
                                     <input type="text" className="form-control" value={userData.weight} placeholder="lbs" onChange={this.handleWeightChange.bind(this)}/>
                                 </div>
                             </div>
@@ -343,7 +343,7 @@ export default class FullFormSimple extends React.Component {
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="form-group">
-                                    <label>Your Weight (lbs):</label>
+                                    <label>Your Weight (pounds):</label>
                                     &nbsp;&nbsp;{userData.weight}
                                 </div>
                             </div>

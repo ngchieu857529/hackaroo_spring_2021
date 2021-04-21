@@ -154,7 +154,7 @@ export default class PaymentFormPortal extends React.Component {
                     <div className="col-md-12">
                         <div className="col-md-12">
                             <div className="row">
-                                Based on the provided information, here is what our prediction for the <b>&nbsp;ANNUAL&nbsp;</b> charge of your insurance plan: {insuranceData.premium_charge.toLocaleString("en-US", {style:"currency", currency:"USD"})}, or {(insuranceData.premium_charge / 12).toLocaleString("en-US", {style:"currency", currency:"USD"})}/month.
+                                Based on the provided information, here is what our prediction for the <b>&nbsp;ANNUAL&nbsp;</b> charge of your insurance plan: &nbsp;<b>{insuranceData.premium_charge.toLocaleString("en-US", {style:"currency", currency:"USD"})}</b>, or &nbsp;<b>{(insuranceData.premium_charge / 12).toLocaleString("en-US", {style:"currency", currency:"USD"})}</b>/month.
                             </div>
                             <br />
                             <div className="row">Select a plan below to view and pay!</div>
@@ -247,26 +247,27 @@ export default class PaymentFormPortal extends React.Component {
                         <div className="col-md-12" style={{textAlign: "center"}}>
                             <div>Below is the confirmation of your payment. Please save it for your record!</div>
                             <br />
-                            <div className="col-md-9 offset-md-3">
-                            <table>
-                                <th colSpan="2" style={{backgroundColor: "#00B050", color: "#FFFFFF"}}>
-                                    Receipt
-                                </th>
-                                <tbody>
-                                    <tr>
-                                        <td>Total Charge</td>
-                                        <td>{(curPlanPrice * 12).toLocaleString("en-US", {style:"currency", currency:"USD"})}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Confirmation Number</td>
-                                        <td>{randomConfNum}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Card Number</td>
-                                        <td>{cardNumber}</td>
-                                    </tr>
-                                </tbody>
-                            </table></div>
+                            <div className="col-md-5 offset-md-4">
+                                <table>
+                                    <th colSpan="2" style={{backgroundColor: "#00B050", color: "#FFFFFF"}}>
+                                        Receipt
+                                    </th>
+                                    <tbody>
+                                        <tr>
+                                            <td>Total Charge</td>
+                                            <td>{(curPlanPrice * 12).toLocaleString("en-US", {style:"currency", currency:"USD"})}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Confirmation Number</td>
+                                            <td>{randomConfNum}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Card Number</td>
+                                            <td>{cardNumber}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     )}

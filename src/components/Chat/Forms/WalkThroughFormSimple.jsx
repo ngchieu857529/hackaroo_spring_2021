@@ -34,7 +34,7 @@ export default class WalkThroughFormSimple extends React.Component {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group">
-                                <label>Your Weight (lbs):</label>
+                                <label>Your Weight (pounds)):</label>
                                 &nbsp;&nbsp;{steps.simple_weight.value}
                             </div>
                         </div>
