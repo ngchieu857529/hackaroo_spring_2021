@@ -66,7 +66,7 @@ export default class ChatBotWindow extends React.Component {
             steps: [
                 {
                     id: "start_chat",
-                    message: "Hello! I am a virtual assistance, and I am here to assist you with your insurance plan. What do you need help with?",
+                    message: "Hello! I am a virtual assistant, and I am here to assist you with your insurance plan. What do you need help with?",
                     trigger: "start_options"
                 },
                 {
@@ -497,7 +497,7 @@ export default class ChatBotWindow extends React.Component {
                     <ThemeProvider theme={chatbotTheme}>
                         <ChatBot
                             handleEnd={this.submitForm.bind(this)}
-                            headerTitle="Virtual Assistance"
+                            headerTitle="Virtual Assistant"
                             speechSynthesis={{ enable: true, lang: 'en', voice: this.state.voice }}
                             steps={this.state.steps}
                             placeholder="Enter a message"
