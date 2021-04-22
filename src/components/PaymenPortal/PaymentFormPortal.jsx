@@ -73,11 +73,25 @@ export default class PaymentFormPortal extends React.Component {
                     {/* eslint-disable-next-line */}
                     {Object.keys(insuranceData.plans[type]).map(function(plan) {
                         if (insuranceData.plans[type][plan]["Plan Marketing Name"] === planName) {
+                            var color = "black"
+                            if (type === "Catastrophic") {
+                                color = "#FF0000"
+                            } else if (type === "Bronze") {
+                                color = "#CD7F32"
+                            } else if (type === "Expanded Bronze") {
+                                color = "#FF5733"
+                            } else if (type === "Silver") {
+                                color = "#C0C0C0"
+                            } else if (type === "Gold") {
+                                color = "#FFD700"
+                            } else if (type === "Platinum") {
+                                color = "#42BBB0"
+                            }
                             return (
                                 <div className="col-md-12">
                                     <div className="col-md-12">
                                         <table style={{width: "100%"}}>
-                                            <th colSpan="2" style={{backgroundColor: "#00B050", color: "#FFFFFF"}}>
+                                            <th colSpan="2" style={{backgroundColor: "#00B050", color: "#FFFFFF", fontSize: "110%"}}>
                                                 {insuranceData.plans[type][plan]["Plan Marketing Name"]}
                                             </th>
                                             <tbody>
@@ -88,12 +102,20 @@ export default class PaymentFormPortal extends React.Component {
                                                 {Object.keys(insuranceData.plans[type][plan]).map(function(detail) {
                                                     return (
                                                         <tr>
-                                                            <td style={{width: "30%", textTransform: 'capitalize'}}>{detail}</td>
-                                                            {detail.includes("Age") ? (
-                                                            <td style={{width: "70%"}}>$<b>{insuranceData.plans[type][plan][detail]}</b>/month, or <b>{(insuranceData.plans[type][plan][detail] * 12).toLocaleString("en-US", {style:"currency", currency:"USD"})}</b>/year</td>
-                                                            ) : (
-                                                            <td style={{width: "70%"}}>{insuranceData.plans[type][plan][detail]}</td>
-                                                            )}
+                                                            <td style={{width: "30%", textTransform: "capitalize"}}><b>{detail}</b></td>
+                                                            {detail.includes("Age")
+                                                            ? <td style={{width: "70%"}}>$<b><span style={{fontSize: "110%"}}>{insuranceData.plans[type][plan][detail]}</span></b>/month, or <b><span style={{fontSize: "110%"}}>{(insuranceData.plans[type][plan][detail] * 12).toLocaleString("en-US", {style:"currency", currency:"USD"})}</span></b>/year</td>
+                                                            :
+                                                            detail.includes("Metal Level")
+                                                            ? <td style={{width: "70%", color: color, fontSize: "110%"}}><b>{insuranceData.plans[type][plan][detail]}</b></td>
+                                                            :
+                                                            detail.includes("URL")
+                                                            ? <td style={{width: "70%"}}><a href={insuranceData.plans[type][plan][detail]}>{insuranceData.plans[type][plan][detail]}</a></td>
+                                                            :
+                                                            detail.includes("Phone Number") && insuranceData.plans[type][plan][detail] !== "N/A"
+                                                            ? <td style={{width: "70%"}}><a href={"tel:" + insuranceData.plans[type][plan][detail]}>{insuranceData.plans[type][plan][detail]}</a></td>
+                                                            : <td style={{width: "70%"}}>{insuranceData.plans[type][plan][detail]}</td>
+                                                            }
                                                         </tr>        
                                                     )
                                                 })}
